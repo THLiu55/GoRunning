@@ -2,10 +2,11 @@ package com.example.gorunning.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import cn.leancloud.LeanCloud;
 import com.example.gorunning.R;
+import com.qweather.sdk.view.HeConfig;
+
+import cn.bmob.v3.Bmob;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -19,9 +20,6 @@ public class LoginActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.hide();
 
-        // initialize database
-        LeanCloud.initialize(this, "xjpv1WsKDO5g4KtWDFcE0q3d-gzGzoHsz", "AUPWrExKBKkjczQjGGs3EqN2", "https://please-replace-with-your-customized.domain.com");
+        Bmob.initialize(this, "ebbe137833bf421a6e3584f81e56b462");
     }
-
-
 }

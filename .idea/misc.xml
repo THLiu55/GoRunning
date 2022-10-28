@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.3453125" />
+        <entry key="app/src/main/res/drawable/input.xml" value="0.282" />
+        <entry key="app/src/main/res/drawable/send_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/send_button2.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/trace_background.xml" value="0.2235" />
+        <entry key="app/src/main/res/drawable/weather_background.xml" value="0.282" />
+        <entry key="app/src/main/res/drawable/weather_background2.xml" value="0.255" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.24698333740234377" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.34643249511718754" />
+        <entry key="app/src/main/res/layout/fragment_forget_password.xml" value="0.26667175292968753" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3276030541883358" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_stattistic.xml" value="0.2638888888888889" />
+        <entry key="app/src/main/res/layout/fragment_trace.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.37906976744186044" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28730010986328125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

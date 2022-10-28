@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/navigation_item1">
+
+    <fragment
+        android:id="@+id/navigation_item3"
+        android:name="com.example.gorunning.fragment.StattisticFragment"
+        android:label="fragment_stattistic"
+        tools:layout="@layout/fragment_stattistic" />
+    <fragment
+        android:id="@+id/navigation_item2"
+        android:name="com.example.gorunning.fragment.TraceFragment"
+        android:label="fragment_trace"
+        tools:layout="@layout/fragment_trace" />
+    <fragment
+        android:id="@+id/navigation_item1"
+        android:name="com.example.gorunning.fragment.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_navigation_item1_to_navigation_item2"
+            app:destination="@id/navigation_item2" />
+    </fragment>
+</navigation>
