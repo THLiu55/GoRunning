@@ -1,5 +1,6 @@
 package com.example.gorunning.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.Overlay;
@@ -38,17 +40,19 @@ import com.example.gorunning.R;
 import com.example.gorunning.sharings.SharedViewModel;
 import com.example.gorunning.utils.MyLocationListener;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 public class TraceFragment extends Fragment {
 
-    private TextView location_text;
+    private TextView location_text, trace_status_text, mile_text, calories_text;
     private BaiduMap mBaiduMap;
     private TextureMapView mMapView;
     public LocationClient mLocationClient = null;
     SharedViewModel sharedViewModel;
-    private Button runButton;
+    private Button runButton, clearButton;
+    private Overlay overlay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +64,10 @@ public class TraceFragment extends Fragment {
         mMapView = view.findViewById(R.id.bmapView);
         location_text = view.findViewById(R.id.location_text_trace);
         runButton = view.findViewById(R.id.run_button);
+        clearButton = view.findViewById(R.id.clear_button);
+        mile_text = view.findViewById(R.id.running_miles);
+        calories_text = view.findViewById(R.id.calories_text);
+        trace_status_text = view.findViewById(R.id.trace_status_text);
         LocationClient.setAgreePrivacy(true);
         try {
             mLocationClient = new LocationClient(requireContext().getApplicationContext()); //声明LocationClient类
@@ -91,12 +99,13 @@ public class TraceFragment extends Fragment {
                     LatLng ll = new LatLng(myLocationData.latitude, myLocationData.longitude);
                     MapStatus.Builder builder = new MapStatus.Builder();
                     //设置缩放中心点；缩放比例；
-                    builder.target(ll).zoom(18.0f);
+                    builder.target(ll).zoom(19);
                     //给地图设置状态
                     MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL,
-                            false, BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_location_on_24), 0, 0);
+                            false, BitmapDescriptorFactory.fromResource(R.drawable.ellipse), 0, 0);
                     mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
                     mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+                    mBaiduMap.setMyLocationData(myLocationData);
                 }
             }
         });
@@ -111,14 +120,18 @@ public class TraceFragment extends Fragment {
         });
 
         sharedViewModel.getTrack().observe(requireActivity(), new Observer<List<LatLng>>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChanged(List<LatLng> latLngs) {
                 if (latLngs.size() >= 2) {
                     OverlayOptions mOverlayOptions = new PolylineOptions()
-                            .width(10)
+                            .width(5)
                             .color(0xAAFF0000)
                             .points(latLngs);
-                    mBaiduMap.addOverlay(mOverlayOptions);
+                    overlay = mBaiduMap.addOverlay(mOverlayOptions);
+                    double dis = sharedViewModel.getDistance();
+                    mile_text.setText(String.valueOf(dis) + " m");
+                    calories_text.setText(String.valueOf(getCalories(dis)) + " Cal");
                 }
             }
         });
@@ -127,7 +140,33 @@ public class TraceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sharedViewModel.resetRunningState();
+
+                // rest UI
+                boolean isRunning = sharedViewModel.getRunningState();
+                if (isRunning) {
+                    runButton.setText("Stop");
+                    trace_status_text.setText("running");
+                } else {
+                    runButton.setText("Run");
+                    trace_status_text.setText("having rest");
+                }
             }
         });
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedViewModel.setTrack(new LinkedList<>());
+                if (overlay != null) {
+                    System.out.println("remove all overlays");
+                    mBaiduMap.clear();
+                    System.out.println("is removed? " + overlay.isRemoved());
+                }
+            }
+        });
+    }
+
+    public double getCalories(double dis) {
+        return 70 * dis * 1.036;
     }
 }

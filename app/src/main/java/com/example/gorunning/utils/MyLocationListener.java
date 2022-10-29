@@ -19,10 +19,12 @@ public class MyLocationListener extends BDAbstractLocationListener {
 
     SharedViewModel sharedViewModel;
     List<LatLng> track;
+    double distance;
 
     public MyLocationListener(SharedViewModel sharedViewModel) {
         this.sharedViewModel = sharedViewModel;
         track = new LinkedList<>();
+        distance = 0;
     }
 
     public static MyLocationListener getLocationListener(SharedViewModel sharedViewModel) {
@@ -50,7 +52,9 @@ public class MyLocationListener extends BDAbstractLocationListener {
             sharedViewModel.setLocation(loc);
             track.add(new LatLng(lat, lon));
             sharedViewModel.setTrack(track);
+
         }
         sharedViewModel.setLocData(locData);
     }
+
 }

@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
             LocationClientOption option = new LocationClientOption();
             option.setOpenGps(true);
             option.setCoorType("bd09ll");
-            option.setScanSpan(5000);
+            option.setScanSpan(1000);
             mLocationClient.setLocOption(option);
             MyLocationListener myLocationListener = MyLocationListener.getLocationListener(sharedViewModel);
             // register the location listener
