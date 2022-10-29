@@ -18,8 +18,8 @@ import java.util.Properties;
 
 
 public class MailSender {
-    private static final String from = "thliu328@163.com";
-    private static final String password = "UPYBHLJLKQZZUVRA";
+    private static final String from = "android_proj@163.com";
+    private static final String password = "OWZDJTUINROTLATC";
     private static final String host = "smtp.163.com";
 
     public static Session getMailSession() {
@@ -45,7 +45,7 @@ public class MailSender {
             message.setText(body);
             Transport.send(message);
         } catch (MessagingException ex) {
-            ex.printStackTrace();
+            Log.d("error", ex.toString());
             return false;
         }
         return true;

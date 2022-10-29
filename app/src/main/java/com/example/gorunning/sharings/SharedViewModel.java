@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 import com.example.gorunning.models.User;
 import com.qweather.sdk.bean.weather.WeatherHourlyBean;
 
@@ -24,6 +25,10 @@ public class SharedViewModel extends ViewModel {
     MutableLiveData<Integer> iconId = new MutableLiveData<>();
     MutableLiveData<String> recommendation = new MutableLiveData<>();
     MutableLiveData<List<Integer>> next24Weather = new MutableLiveData<>();
+    // track
+    MutableLiveData<List<LatLng>> track = new MutableLiveData<>();
+
+    boolean startTrace = false;
 
     public MutableLiveData<User> getUser() {
         return user;
@@ -111,5 +116,23 @@ public class SharedViewModel extends ViewModel {
 
     public void setLocData(MyLocationData locData) {
         this.locData.postValue(locData);
+    }
+
+    public void setTrack(List<LatLng> track) {
+        if (startTrace) {
+            this.track.postValue(track);
+            for (LatLng latLng : track) {
+                System.out.print(latLng.latitude + ", " +  latLng.longitude + "; ");
+            }
+            System.out.println();
+        }
+    }
+
+    public MutableLiveData<List<LatLng>> getTrack() {
+        return track;
+    }
+
+    public void resetRunningState() {
+        startTrace = !startTrace;
     }
 }

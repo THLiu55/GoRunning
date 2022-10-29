@@ -78,7 +78,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="65dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/weather_background2"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/golden"
                         android:text="Hi, Please wait a second ..."
-                        android:textColor="#0071C2"
+                        android:textColor="#004E85"
                         android:textSize="35sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -242,7 +242,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="#014C81"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

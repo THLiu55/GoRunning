@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.GoRunning" parent="Theme.MaterialComponents.DayNight.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#0071C2</item>
-        <item name="colorPrimaryVariant">#0073C8</item>
+        <item name="colorPrimary">#004E85</item>
+        <item name="colorPrimaryVariant">#004E85</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

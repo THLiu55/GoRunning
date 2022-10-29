@@ -41,7 +41,6 @@ public class SignUpFragment extends Fragment {
 
     Button cancelButton, confirmButton, sendEmailButton;
     EditText signUpUsername, signUpPassword, signUpRePassword, signUpEmail, signUpCaptcha;
-    boolean validEmail;
     SharedViewModel sharedViewModel;
     public static final String REGEX_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 
@@ -236,6 +235,7 @@ public class SignUpFragment extends Fragment {
         }
         if (!rePassword.equals(password)) {
             signUpRePassword.setError("not match");
+            flag = false;
         }
         return flag;
     }

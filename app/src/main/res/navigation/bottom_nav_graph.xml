@@ -24,4 +24,9 @@
             android:id="@+id/action_navigation_item1_to_navigation_item2"
             app:destination="@id/navigation_item2" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_item4"
+        android:name="com.example.gorunning.fragment.RankFragment"
+        android:label="fragment_rank"
+        tools:layout="@layout/fragment_rank" />
 </navigation>

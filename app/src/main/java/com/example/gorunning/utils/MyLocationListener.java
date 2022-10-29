@@ -5,18 +5,24 @@ import android.util.Log;
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 import com.example.gorunning.sharings.SharedViewModel;
 
+import java.io.Flushable;
 import java.text.DecimalFormat;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MyLocationListener extends BDAbstractLocationListener {
 
     static MyLocationListener INSTANCE;
 
     SharedViewModel sharedViewModel;
+    List<LatLng> track;
 
     public MyLocationListener(SharedViewModel sharedViewModel) {
         this.sharedViewModel = sharedViewModel;
+        track = new LinkedList<>();
     }
 
     public static MyLocationListener getLocationListener(SharedViewModel sharedViewModel) {
@@ -42,6 +48,8 @@ public class MyLocationListener extends BDAbstractLocationListener {
             DecimalFormat df = new DecimalFormat( "0.00");
             String loc = df.format(lon) + "," + df.format(lat);
             sharedViewModel.setLocation(loc);
+            track.add(new LatLng(lat, lon));
+            sharedViewModel.setTrack(track);
         }
         sharedViewModel.setLocData(locData);
     }

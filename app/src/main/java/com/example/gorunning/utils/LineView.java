@@ -178,7 +178,7 @@ public class LineView extends View {
         }
         minY = (int) minH;
         maxY = (int) maxH;
-        double w = maxX, h = maxH + 3;
+        double w = maxX, h = 3 * (maxH + 1) / 2;
         System.out.println("h: " + h);
         scale_x = (mWidth - 2 * mViewMargin) * 8 / (9 * w);
         scale_y = (mHeight - 2 * mViewMargin) * 10 / (h * 11);

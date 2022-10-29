@@ -11,4 +11,9 @@
         android:id="@+id/navigation_item3"
         android:icon="@drawable/ic_baseline_data_usage_24"
         android:title="statistics" />
+
+    <item android:id="@+id/navigation_item4"
+        android:icon="@drawable/ic_baseline_format_list_numbered_rtl_24"
+        android:title="rank"
+        />
 </menu>

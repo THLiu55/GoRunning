@@ -1,11 +1,11 @@
 <!-- 形状 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="#FFFFFF" />
+    <solid android:color="#E9F6F4F4" />
 
     <stroke
-        android:width="5dp"
-        android:color="#006BB0"
+        android:width="1dp"
+        android:color="#7CFFFFFF"
         />
 
     <!-- 内填充颜色 -->
@@ -15,6 +15,6 @@
         android:right="10dp"
         android:top="10dp" />
     <!-- 圆角 -->
-    <corners android:radius="20dp"/>
+    <corners android:radius="15dp"/>
 
 </shape>
