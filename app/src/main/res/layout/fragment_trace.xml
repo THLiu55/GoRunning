@@ -76,12 +76,14 @@
                     android:id="@+id/calories_text"
                     android:layout_width="0dp"
                     android:layout_height="26dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/golden"
                     android:text="0.0 Cals"
                     android:textColor="#F4511E"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView33"
-                    app:layout_constraintEnd_toEndOf="@+id/running_miles"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView33"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -103,10 +105,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/golden"
                     android:text="Burned calorie:"
                     android:textColor="#F4511E"
                     android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView24"
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -114,12 +118,12 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:fontFamily="@font/golden"
                     android:text="Today you have run:"
                     android:textColor="@color/black"
                     android:textSize="25dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView33"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

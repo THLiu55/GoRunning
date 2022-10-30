@@ -99,7 +99,7 @@ public class TraceFragment extends Fragment {
                     LatLng ll = new LatLng(myLocationData.latitude, myLocationData.longitude);
                     MapStatus.Builder builder = new MapStatus.Builder();
                     //设置缩放中心点；缩放比例；
-                    builder.target(ll).zoom(19);
+                    builder.target(ll).zoom(18);
                     //给地图设置状态
                     MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL,
                             false, BitmapDescriptorFactory.fromResource(R.drawable.ellipse), 0, 0);
@@ -124,14 +124,20 @@ public class TraceFragment extends Fragment {
             @Override
             public void onChanged(List<LatLng> latLngs) {
                 if (latLngs.size() >= 2) {
+
+
+
                     OverlayOptions mOverlayOptions = new PolylineOptions()
-                            .width(5)
+                            .width(10)
                             .color(0xAAFF0000)
                             .points(latLngs);
                     overlay = mBaiduMap.addOverlay(mOverlayOptions);
                     double dis = sharedViewModel.getDistance();
-                    mile_text.setText(String.valueOf(dis) + " m");
-                    calories_text.setText(String.valueOf(getCalories(dis)) + " Cal");
+                    mile_text.setText(dis + " m");
+                    calories_text.setText(getCalories(dis) + " Kcal");
+                    for (LatLng latLng : latLngs) {
+                        Log.d("tracing", latLng.latitude + "," + latLng.longitude + "(" + dis + ")" + " : ");
+                    }
                 }
             }
         });
@@ -158,15 +164,13 @@ public class TraceFragment extends Fragment {
             public void onClick(View view) {
                 sharedViewModel.setTrack(new LinkedList<>());
                 if (overlay != null) {
-                    System.out.println("remove all overlays");
                     mBaiduMap.clear();
-                    System.out.println("is removed? " + overlay.isRemoved());
                 }
             }
         });
     }
 
     public double getCalories(double dis) {
-        return 70 * dis * 1.036;
+        return 70 * dis * 1.036 / 1000;
     }
 }

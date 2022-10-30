@@ -1,5 +1,7 @@
 package com.example.gorunning.sharings;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -7,7 +9,9 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.example.gorunning.models.User;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class SharedViewModel extends ViewModel {
 
@@ -122,15 +126,8 @@ public class SharedViewModel extends ViewModel {
 
     public void setTrack(List<LatLng> track) {
         if (startTrace) {
-            this.track.postValue(track);
-            for (LatLng latLng : track) {
-                System.out.print(latLng.latitude + ", " +  latLng.longitude + "; ");
-            }
-            System.out.println();
             if (track.size() > 1) {
-                LatLng prev = track.get(track.size() - 2);
-                LatLng now = track.get(track.size() - 1);
-                distance += getDistanceByLoc(prev.longitude, prev.latitude, now.longitude, now.latitude);
+                this.track.postValue(track);
             }
         }
     }
@@ -143,33 +140,8 @@ public class SharedViewModel extends ViewModel {
         startTrace = !startTrace;
         if (!startTrace) {
             distance = 0;
+            track.setValue(new LinkedList<>());
         }
-    }
-
-
-    /**
-     * 转化为弧度(rad)
-     * */
-    private static double rad(double d)
-    {
-        return d * Math.PI / 180.0;
-    }
-    /**
-     * @param lon1 第一点的精度
-     * @param lat1 第一点的纬度
-     * @param lon2 第二点的精度
-     * @param lat2 第二点的纬度
-     * @return 返回的距离，单位m
-     * */
-    public static double getDistanceByLoc(double lon1, double lat1, double lon2, double lat2) {
-        double radLat1 = rad(lat1);
-        double radLat2 = rad(lat2);
-        double a = radLat1 - radLat2;
-        double b = rad(lon1) - rad(lon2);
-        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-        s = s * EARTH_RADIUS;
-        s = Math.round(s * 10000) / 10000;
-        return s;
     }
 
     public double getDistance() {
@@ -178,5 +150,9 @@ public class SharedViewModel extends ViewModel {
 
     public boolean getRunningState() {
         return startTrace;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }

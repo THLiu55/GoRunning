@@ -22,7 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_stattistic.xml" value="0.2638888888888889" />
-        <entry key="app/src/main/res/layout/fragment_trace.xml" value="0.3508804321289063" />
+        <entry key="app/src/main/res/layout/fragment_trace.xml" value="0.155322265625" />
         <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.27254638671875003" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28730010986328125" />
       </map>
